@@ -41,6 +41,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // сделаем 1 сканер - это удобно, если например надо будет переделать, чтоб ввод был не из консоли, а как-то иначе
         Scanner in = new Scanner(System.in);
 
         int numElements = inputIntMinMax(1,10, in, "Enter number of elements (1 - 10):");
