@@ -14,8 +14,8 @@ public class ListUtils {
     }
 
     static ArrayList<Integer> inputList(int size, Scanner in){
-        ArrayList<Integer> list = new ArrayList<>(size);
         if(size > 0) {
+            ArrayList<Integer> list = new ArrayList<>(size);
             System.out.printf("Enter %d elements\n", size);
             for (int i = 0; i < size; i++) {
                 System.out.printf("Element %d ", i);
