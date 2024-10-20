@@ -6,17 +6,17 @@ import java.util.Collections;
 
 public class SortingAlgs {
 
-    static ArrayList<Integer> sortListMergeSort(ArrayList<Integer> listSource, int maxListSize) {
+    static ArrayList<Integer> sortListMergeSort(ArrayList<Integer> listSource, int maxListSize) throws IllegalArgumentException {
         if(listSource.size()> maxListSize){
-            // кинуть исключение здесь
+            throw new IllegalArgumentException("Array to sort is too big for Merge sort");// кинуть исключение здесь
         }
         ArrayList<Integer> list = new ArrayList<> (listSource);
         Collections.sort(list);
         return list;
     }
-    static ArrayList<Integer> sortListBubbleSort(ArrayList<Integer> listSource, int maxListSize) {
+    static ArrayList<Integer> sortListBubbleSort(ArrayList<Integer> listSource, int maxListSize) throws IllegalArgumentException {
         if(listSource.size()> maxListSize){
-            // кинуть исключение здесь
+            throw new IllegalArgumentException("Array to sort is too big for Bubble sort");// кинуть исключение здесь
         }
         ArrayList<Integer> list = new ArrayList<> (listSource);
         for (int out = list.size() - 1; out >= 1; out--){

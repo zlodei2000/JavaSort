@@ -24,9 +24,8 @@ public class ListUtils {
             return list;
         }else{
             System.out.println("List size must be a positive integer");
-            // кинуть исключение
+            throw new NegativeArraySizeException("List size must be a positive integer");
         }
-        return null;
     }
 
     static int inputIntMinMax(int min, int max, Scanner in, String msg)
