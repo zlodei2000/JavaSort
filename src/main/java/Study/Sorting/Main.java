@@ -9,7 +9,7 @@ import static Study.Sorting.ListUtils.*;
 public class Main {
     // интерфейс, который будет использоваться для создания указателей на функции сортировки
     private interface sortAlg {
-        ArrayList<Integer> sortAlgFunc(ArrayList<Integer> listSource, int maxListSize);
+        ArrayList<Integer> sortAlgFunc(ArrayList<Integer> listSource, int maxListSize) throws IllegalArgumentException;
     }
 
     // вспомогательный класс - просто название алгоритма, ссылка на метод и ограничение
@@ -29,8 +29,8 @@ public class Main {
     private static void InitAlgorithms(){
         // массив указателей на методы сортировки, пока что просто 2 алгоритма
         algList = new ArrayList<>(numAlgs);
-        algList.add(new Algorithm("Bubble sort",SortingAlgs::sortListBubbleSort,100 ));
-        algList.add(new Algorithm("Merge sort",SortingAlgs::sortListMergeSort,100 ));
+        algList.add(new Algorithm("Bubble sort",SortingAlgs::sortListBubbleSort,5 ));
+        algList.add(new Algorithm("Merge sort",SortingAlgs::sortListMergeSort,10 ));
     }
     private static void printAlgorithmsAvailable(){
         System.out.println("Available Algorithms:");
@@ -56,12 +56,26 @@ public class Main {
         System.out.printf("Algorithm to use: %d\nSource list:",algChoice);
         printList(listSource);
 
-        ArrayList<Integer> listSorted = (algList.get(algChoice)).AlgImpl.sortAlgFunc(listSource, (algList.get(algChoice)).maxListSize);
-
-
-        System.out.print("Sorted list:");
-        printList(listSorted);
-
+        try {
+            ArrayList<Integer> listSorted = (algList.get(algChoice)).AlgImpl.sortAlgFunc(listSource, (algList.get(algChoice)).maxListSize);
+            System.out.print("Sorted list:");
+            printList(listSorted);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            System.out.println("Trying all other algorithms:");
+                for (int i = 0; i < algList.size(); i++) {
+                    if (i != algChoice) {
+                        try {
+                            ArrayList<Integer> listSorted = (algList.get(i)).AlgImpl.sortAlgFunc(listSource, (algList.get(i)).maxListSize);
+                            System.out.printf("Sorted list by %s:",algList.get(i).AlgName);
+                            printList(listSorted);
+                            break;
+                        } catch (IllegalArgumentException ex) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+            }
+        }
         in.close();
     }
 }
