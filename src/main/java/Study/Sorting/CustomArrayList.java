@@ -43,7 +43,7 @@ public class CustomArrayList<T> implements CustomArrayInterface<T> {
                 array = newarray;
                 memCapacity += GRANULARITY;
             }
-            array[size] = (T) item;
+            array[size] = item;
             size++;
         }
         return true;
