@@ -33,7 +33,7 @@ public class CustomArrayList<T> implements CustomArrayInterface<T> {
     }
 
     @Override
-    public boolean add(Object item) {
+    public boolean add(T item) {
         if(item == null)
             return false;
         else {
@@ -46,7 +46,7 @@ public class CustomArrayList<T> implements CustomArrayInterface<T> {
             array[size] = (T) item;
             size++;
         }
-        return false;
+        return true;
     }
 
     @Override
