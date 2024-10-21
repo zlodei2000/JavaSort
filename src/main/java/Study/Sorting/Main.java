@@ -77,5 +77,25 @@ public class Main {
             }
         }
         in.close();
+
+        System.out.println("CustomArrayList test add");
+        CustomArrayList<String> lst1 = new CustomArrayList<>();
+        lst1.add("hello");
+        lst1.add("world");
+        for(int i = 0; i < 17; i++) {
+            lst1.add(String.valueOf(i));
+        }
+
+        for(int i = 0; i < lst1.size(); i++){
+           System.out.println(lst1.get(i));
+        }
+
+        System.out.println("Test remove");
+
+        lst1.remove(0);
+        for(int i = 0; i < lst1.size(); i++){
+            System.out.println(lst1.get(i));
+        }
+
     }
 }
