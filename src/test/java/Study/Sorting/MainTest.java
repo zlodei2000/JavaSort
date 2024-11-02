@@ -6,9 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
 
-    @Test
-    void main() {
-    }
+
     @Test
     void testSum() {
         assertEquals(3, 1 + 1);
