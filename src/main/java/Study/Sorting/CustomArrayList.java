@@ -1,4 +1,5 @@
 package Study.Sorting;
+import java.lang.reflect.Array;
 
 public class CustomArrayList<T> implements CustomArrayInterface<T> {
     private T[] array;
@@ -8,6 +9,8 @@ public class CustomArrayList<T> implements CustomArrayInterface<T> {
 
     public CustomArrayList(){
         array = (T[]) new Object[GRANULARITY];
+        //array = (T[]) Array.newInstance(array.getClass().getComponentType(), GRANULARITY);
+        //array = (T[]) Array.newInstance(T.class, GRANULARITY);
         size = 0;
         memCapacity = GRANULARITY;
     }
