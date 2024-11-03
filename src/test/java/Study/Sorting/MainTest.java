@@ -11,4 +11,5 @@ class MainTest {
     void testSum() {
         assertEquals(2, 1 + 1);
     }
+
 }
