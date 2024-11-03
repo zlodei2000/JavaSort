@@ -4,11 +4,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MainTest {
-
+class ListUtilsTest {
 
     @Test
-    void testSum() {
-        assertEquals(2, 1 + 1);
+    void printList() {
+    }
+
+    @Test
+    void inputList() {
+    }
+
+    @Test
+    void inputIntMinMax() {
     }
 }
