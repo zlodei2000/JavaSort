@@ -6,7 +6,7 @@ import java.util.Map;
 public class Main {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         UserRepositoryImpl ur  = new UserRepositoryImpl();
         ur.addUser(new User("Ivan", "Ivanov","123", "ivan@gmail.com"));
@@ -23,6 +23,20 @@ public class Main {
         MessageDTO msg3  = new MessageDTO(Map.of("action", "button_click", "page", "book_card", "msisdn", "555"), MessageDTO.EnrichmentType.MSISDN);
         MessageDTO msg4  = new MessageDTO(Map.of("action", "button_click", "page", "book_card", "msisdn", "789",
                 "firstName", "Jonh", "lastName", "Doe"), MessageDTO.EnrichmentType.MSISDN);
+        MessageDTO msg5  = new MessageDTO(Map.of("action", "button_click", "page", "book_card", "msisdn", "555"), MessageDTO.EnrichmentType.LANGUAGE);
+
+        EnrichmentHandlers eh = new EnrichmentHandlers();
+
+        msg1 = eh.enrich(msg1);
+        System.out.println(msg1);
+        msg2 = eh.enrich(msg2);
+        System.out.println(msg2);
+        msg3 = eh.enrich(msg3);
+        System.out.println(msg3);
+        msg4 = eh.enrich(msg4);
+        System.out.println(msg4);
+        msg5 = eh.enrich(msg5);
+        System.out.println(msg5);
 
     }
 }

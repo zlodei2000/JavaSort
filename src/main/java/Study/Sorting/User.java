@@ -22,7 +22,7 @@ public class User {
     }
 
     public String toString() {
-        return firstName + " " + lastName + " " + msisdn;
+        return firstName + " " + lastName + " " + msisdn + " " + email;
     }
 
     public void setFirstName(String firstName) {

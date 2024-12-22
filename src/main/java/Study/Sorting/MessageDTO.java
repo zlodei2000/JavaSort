@@ -11,8 +11,19 @@ public class MessageDTO {
         this.content = content;
         this.enrichmentType = enrichmentType;
     }
+    @Override
+    public String toString() {
+        return "Message {" +
+                "content=" + content +
+                ", enrichmentType=" + enrichmentType +
+                '}';
+    }
+
+    public EnrichmentType getEnrichmentType() {
+        return enrichmentType;
+    }
 
     public enum EnrichmentType {
-        MSISDN, EMAIL
+        MSISDN, EMAIL, LANGUAGE
     }
 }
