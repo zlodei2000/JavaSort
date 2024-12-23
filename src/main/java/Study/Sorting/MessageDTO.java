@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class MessageDTO {
 
-    final private Map<String, String> content;
+    private final Map<String, String> content;
     final private EnrichmentType enrichmentType;
 
     public MessageDTO(Map<String, String> content, EnrichmentType enrichmentType) {
@@ -21,6 +21,10 @@ public class MessageDTO {
 
     public EnrichmentType getEnrichmentType() {
         return enrichmentType;
+    }
+
+    public Map<String, String>  getContent() {
+        return content;
     }
 
     public enum EnrichmentType {
