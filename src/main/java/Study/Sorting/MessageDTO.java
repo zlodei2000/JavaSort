@@ -1,15 +1,24 @@
 package Study.Sorting;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class MessageDTO {
 
-    private final Map<String, String> content;
+    private final Map<String, String> content = new HashMap<>();
     final private EnrichmentType enrichmentType;
 
     public MessageDTO(Map<String, String> content, EnrichmentType enrichmentType) {
-        this.content = content;
-        this.enrichmentType = enrichmentType;
+        synchronized (this) {
+            this.content.putAll(content);
+            this.enrichmentType = enrichmentType;
+        }
+    }
+    public MessageDTO(MessageDTO msg) {
+        synchronized (this) {
+            this.content.putAll(msg.getContent());
+            this.enrichmentType = msg.enrichmentType;
+        }
     }
     @Override
     public String toString() {

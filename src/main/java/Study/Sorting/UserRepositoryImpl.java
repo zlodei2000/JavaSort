@@ -12,8 +12,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean updateUserByMsisdn(String msisdn, User user) {
+        User u = findByMsisdn(msisdn);
         synchronized (users) {
-            User u = findByMsisdn(msisdn);
             if(u != null) {
                 u.setFirstName(user.getFirstName());
                 u.setLastName(user.getLastName());
@@ -24,7 +24,9 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     public void addUser(User user) {
-        users.add(user);
+        synchronized (users) {
+            users.add(user);
+        }
     }
     public HashSet<User> getUsers() {
         return users;

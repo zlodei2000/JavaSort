@@ -6,18 +6,16 @@ import java.util.Map;
 import static java.util.Map.entry;
 
 public class Main {
-
+    static private final UserRepositoryImpl ur = new UserRepositoryImpl();
+    private static final EnrichmentHandlers eh = new EnrichmentHandlers(ur);
 
     public static void main(String[] args) throws Exception {
-
-        UserRepositoryImpl ur  = new UserRepositoryImpl();
         ur.addUser(new User("Ivan", "Ivanov","123", "ivan@gmail.com"));
         ur.addUser(new User("Petr", "Petrov","456", "petr@gmail.com"));
         ur.addUser(new User("Sidor", "Sidorov","789", "sidor@gmail.com"));
 
         ur.updateUserByMsisdn("123", new User("Ivan", "Kozlov","111", "ivan@gmail.com"));
         ur.updateUserByMsisdn("333", new User("Ivan", "Dolbakov","111", "ivan@gmail.com"));
-
         ur.printUsers();
 
         MessageDTO msg1  = new MessageDTO(new HashMap<>(Map.ofEntries(
@@ -52,8 +50,6 @@ public class Main {
                 entry("msisdn", "555"))),
                 MessageDTO.EnrichmentType.LANGUAGE);
 
-        EnrichmentHandlers eh = new EnrichmentHandlers(ur);
-
         System.out.println("before " + msg1);
         msg1 = eh.enrich(msg1);
         System.out.println("after " + msg1);
@@ -74,5 +70,14 @@ public class Main {
         msg5 = eh.enrich(msg5);
         System.out.println("after " + msg5);
 
+    }
+
+    public void init() {
+        ur.addUser(new User("Ivan", "Ivanov","123", "ivan@gmail.com"));
+        ur.addUser(new User("Petr", "Petrov","456", "petr@gmail.com"));
+        ur.addUser(new User("Sidor", "Sidorov","789", "sidor@gmail.com"));
+    }
+    public MessageDTO enrich(MessageDTO message) throws Exception {
+        return eh.enrich(message);
     }
 }

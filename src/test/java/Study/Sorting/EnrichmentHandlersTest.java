@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class EnrichmentHandlersTest {
 
     @Test
-    void enrich() {
+    void enrich() throws Exception {
         UserRepositoryImpl ur  = new UserRepositoryImpl();
         ur.addUser(new User("Ivan", "Ivanov","123", "ivan@gmail.com"));
 
@@ -28,10 +28,10 @@ class EnrichmentHandlersTest {
                 MessageDTO.EnrichmentType.LANGUAGE);
 
         EnrichmentHandlers eh = new EnrichmentHandlers(ur);
-        assertDoesNotThrow(() -> {
-            eh.enrich(msg1);
-        });
-        assertEquals("Message {content={action=button_click, firstName=Ivan, lastName=Ivanov, page=book_card, msisdn=123}, enrichmentType=MSISDN}", msg1.toString());
+        //assertDoesNotThrow(() -> {
+        MessageDTO res = eh.enrich(msg1);
+        //});
+        assertEquals("Message {content={action=button_click, firstName=Ivan, lastName=Ivanov, page=book_card, msisdn=123}, enrichmentType=MSISDN}", res.toString());
         assertThrows(Exception.class, () -> {
             eh.enrich(msg2);
         });

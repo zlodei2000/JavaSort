@@ -22,9 +22,10 @@ class EnrichmentServiceMsisdnTest {
                 MessageDTO.EnrichmentType.MSISDN);
         assertEquals("Message {content={action=button_click, page=book_card, msisdn=123}, enrichmentType=MSISDN}", msg.toString());
         EnrichmentServiceMsisdn es = new EnrichmentServiceMsisdn(ur);
-        assertDoesNotThrow(() -> {
-            es.enrich(msg);
-        });
-        assertEquals("Message {content={action=button_click, firstName=Ivan, lastName=Ivanov, page=book_card, msisdn=123}, enrichmentType=MSISDN}", msg.toString());
+
+        //assertDoesNotThrow(() -> {
+            MessageDTO  res = es.enrich(msg);
+        //});
+        assertEquals("Message {content={action=button_click, firstName=Ivan, lastName=Ivanov, page=book_card, msisdn=123}, enrichmentType=MSISDN}", res.toString());
     }
 }

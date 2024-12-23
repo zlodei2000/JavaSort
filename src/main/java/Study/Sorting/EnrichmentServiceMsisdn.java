@@ -7,16 +7,18 @@ public class EnrichmentServiceMsisdn implements EnrichmentServiceInterface {
         this.ur = ur;
     }
     // возвращается обогащенный (или необогащенный content сообщения)
-    public MessageDTO enrich(MessageDTO message) {
-        String msisdnValue = message.getContent().get(EnrichmentTypeName);
+    public MessageDTO enrich(MessageDTO msg) {
+        String msisdnValue = msg.getContent().get(EnrichmentTypeName);
+        MessageDTO enrichedMessage = new MessageDTO(msg);
+
         if (msisdnValue != null) {
             User userToEnrich = ur.findByMsisdn(msisdnValue);
             if (userToEnrich != null) {
                 //m.put(EnrichmentTypeName, msisdnValue);
-                message.getContent().put("firstName", userToEnrich.getFirstName());
-                message.getContent().put("lastName", userToEnrich.getLastName());
+                    enrichedMessage.getContent().put("firstName", userToEnrich.getFirstName());
+                    enrichedMessage.getContent().put("lastName", userToEnrich.getLastName());
             }
         }
-        return message;
+        return enrichedMessage;
     }
 }

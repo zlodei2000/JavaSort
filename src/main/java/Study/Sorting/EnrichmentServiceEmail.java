@@ -7,7 +7,7 @@ public class EnrichmentServiceEmail implements EnrichmentServiceInterface {
         this.ur = ur;
     }
     @Override
-    public MessageDTO enrich(MessageDTO message) {
-        return message;
+    public MessageDTO enrich(MessageDTO msg) {
+        return new MessageDTO(msg);
     }
 }
